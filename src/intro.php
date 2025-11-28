@@ -1,0 +1,1 @@
+<div class="alert alert-info">Đây là trang giới thiệu về VulnShop.</div>

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html # Mount thư mục để sửa code là cập nhật ngay
+    depends_on:
+      - db
+    networks:
+      - vulnshop-net
+
+  db:
+    image: mysql:5.7
+    container_name: vulnshop_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vulnshop
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d # Tự động chạy script SQL khi khởi tạo
+    networks:
+      - vulnshop-net
+
+networks:
+  vulnshop-net:
+    driver: bridge
