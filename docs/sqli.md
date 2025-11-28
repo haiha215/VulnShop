@@ -4,7 +4,7 @@
 
 Lỗ hổng xảy ra tại trang Đăng nhập (`login.php`). Ứng dụng ghép trực tiếp chuỗi input của người dùng vào câu lệnh SQL mà không qua bộ lọc.
 
-![alt text](image.png)
+![alt text](../image/image.png)
 
 ## ⚠️ Code Lỗi (Vulnerable)
 
@@ -19,7 +19,7 @@ $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$passwo
 3. **Password:** Để trống hoặc nhập bất kỳ
 4. **Kết quả:** Đăng nhập thành công với quyền Admin do điều kiện `OR '1'='1'` luôn đúng
 
-![alt text](image-1.png)
+![alt text](../image/image-1.png)
 
 ## 🔒 Cách Vá lỗi (Fix)
 
@@ -31,4 +31,4 @@ $stmt->bind_param("ss", $username, $password);
 $stmt->execute();
 $result = $stmt->get_result();
 ```
-![alt text](image-2.png)
+![alt text](../image/image-2.png)

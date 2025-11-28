@@ -4,7 +4,7 @@
 
 Lỗ hổng tại trang Promo (`promo.php`). Ứng dụng sử dụng hàm `unserialize()` lên dữ liệu người dùng nhập vào. Hacker có thể truyền vào một Object đã được Serialize để kích hoạt Magic Method (`__destruct`) của class `LogFile` có sẵn trong code.
 
-![alt text](image-20.png)
+![alt text](../image/image-20.png)
 ## ⚠️ Code Lỗi (Vulnerable)
 
 ```php
@@ -21,8 +21,8 @@ $obj = unserialize($_GET['data']);
 2. Gửi payload qua tham số data: `promo.php?data=[payload]`
 3. **Kết quả:** File `shell_poi.php` được tạo ra trên server
 
-![alt text](image-21.png)
-![alt text](image-22.png)
+![alt text](../image/image-21.png)
+![alt text](../image/image-22.png)
 ## 🔒 Cách Vá lỗi (Fix)
 
 Không sử dụng `unserialize()` cho dữ liệu không tin cậy. Thay thế bằng JSON:
@@ -39,4 +39,4 @@ if (preg_match('/^[aios]:[0-9]+/', $_GET['data'])) {
 // Nếu bắt buộc phải dùng unserialize, chỉ cho phép class cụ thể
 $obj = unserialize($_GET['data'], ['allowed_classes' => ['SafeClass']]);
 ```
-![alt text](image-23.png)
+![alt text](../image/image-23.png)

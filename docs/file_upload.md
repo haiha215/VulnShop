@@ -4,7 +4,7 @@
 
 Lỗ hổng tại trang Profile (`profile.php`). Ứng dụng cho phép upload file nhưng không kiểm tra kỹ đuôi file hoặc nội dung file, cho phép upload file `.php`.
 
-![alt text](image-12.png)
+![alt text](../image/image-12.png)
 ## ⚠️ Code Lỗi (Vulnerable)
 
 ```php
@@ -19,8 +19,8 @@ move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 3. Truy cập đường dẫn file đã up: `uploads/shell.php?cmd=whoami`
 4. **Kết quả:** Thực thi lệnh hệ thống (Remote Code Execution)
 
-![alt text](image-13.png)
-![alt text](image-14.png)
+![alt text](../image/image-13.png)
+![alt text](../image/image-14.png)
 ## 🔒 Cách Vá lỗi (Fix)
 
 ```php
@@ -44,5 +44,5 @@ $target_file = "uploads/" . $random_name;
 move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 ```
 
-![alt text](image-15.png)
-![alt text](image-16.png)
+![alt text](../image/image-15.png)
+![alt text](../image/image-16.png)
